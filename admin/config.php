@@ -1,6 +1,6 @@
 <?php
-$hostname = "http://localhost/news-site";
+$hostname = "http://localhost/PHP_News_projects";
 
-$conn = mysqli_connect("localhost","root","","news-site") or die("Connection failed : " . mysqli_connect_error());
+$conn = mysqli_connect("localhost","root","","phpnews") or die("Connection failed : " . mysqli_connect_error());
 
 ?>
