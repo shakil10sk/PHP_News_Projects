@@ -1,5 +1,54 @@
 <?php
-  // include "config.php";
+include "config.php";
+
+if (isset($_POST['submit'])) {
+
+  if (isset($_FILES['fileToUpload'])) {
+    $errors = [];
+    $file_name = $_FILES['fileToUpload']['name'];
+    $file_size = $_FILES['fileToUpload']['size'];
+    $file_tmp = $_FILES['fileToUpload']['tmp_name'];
+    $file_type = $_FILES['fileToUpload']['type'];
+    $file_ext = end(explode('.', $file_name));
+
+    $extensions = array("jpeg","jpg","png");
+
+    if (in_array($file_ext, $extensions) === false) {
+      $errors[] = "This Extension File not Allowed. Please give a file with jpg,jpeg and png formate";
+    }
+    if ($file_size > 2097152) {
+      $errors[] = "File Size must be less then or Equal to 2MB";
+    }
+
+    $file_new_name = time() . "_" . basename($file_name);
+    $target = "upload/" . $file_new_name;
+
+    if (empty($errors) === true) {
+      move_uploaded_file($file_tmp, $target);
+    } else {
+      print_r($errors);
+      die();
+    }
+  }
+session_start();
+  $author = $_SESSION['user_id'];
+  $date = date("d M, Y");
+  $post_title = mysqli_real_escape_string($conn, $_POST['post_title']);
+  $postdesc = mysqli_real_escape_string($conn, $_POST['postdesc']);
+  $category = mysqli_real_escape_string($conn, $_POST['category']);
+
+  $sql = "INSERT INTO post(title, description,category,post_date,author,post_img)
+            VALUES('{$post_title}','{$postdesc}',{$category},'{$date}',{$author},'{$file_new_name}');";
+
+  $sql .= "UPDATE category SET post = post + 1 WHERE category_id = '{$category}'";
+
+  if (mysqli_multi_query($conn, $sql)) {
+    header("Location: {$hostname}/post.php");
+  } else {
+    echo "insert post table query error";
+  }
+}
+
   // if(isset($_FILES['fileToUpload'])){
   //   $errors = array();
 
@@ -19,7 +68,7 @@
   //   if($file_size > 2097152){
   //     $errors[] = "File size must be 2mb or lower.";
   //   }
-  //   $new_name = time(). "-".basename($file_name);
+    // $new_name = time(). "-".basename($file_name);
   //   $target = "upload/".$new_name;
 
   //   if(empty($errors) == true){
