@@ -1,7 +1,13 @@
-<?php include "header.php"; ?>
+<?php include "header.php";
+
+include "config.php";
+
+if ($_SESSION['role_id'] == 0) {
+    header("Location: {$hostname}/");
+}
+?>
 <?php
 if (isset($_POST['submit'])) {
-    include "config.php";
 
     $user_id = mysqli_real_escape_string($conn, $_POST['user_id']);
     $fname = mysqli_real_escape_string($conn, $_POST['f_name']);
@@ -33,7 +39,6 @@ if (isset($_POST['submit'])) {
             </div>
             <div class="col-md-offset-4 col-md-4">
                 <?php
-                include "config.php";
                 $id = $_GET['id'];
                 $sql = "SELECT * FROM user WHERE user_id = $id";
                 $query = mysqli_query($conn, $sql) or die("Edit User Query Error");

@@ -1,6 +1,12 @@
-<?php include "header.php"; ?>
 <?php
-    include "config.php";
+
+include "header.php";
+include "config.php";
+
+if ($_SESSION['role_id'] == 0) {
+    header("Location: {$hostname}");
+}
+
 if (isset($_POST['save'])) {
 
     $fname = mysqli_real_escape_string($conn, $_POST['fname']);

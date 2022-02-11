@@ -1,3 +1,9 @@
+<?php
+include "./config.php";
+if ($_SESSION['role_id'] == 0) {
+    header("Location: {$hostname}/");
+}
+?>
 <?php include "header.php"; ?>
 <div id="admin-content">
     <div class="container">
@@ -20,7 +26,6 @@
                     </thead>
                     <tbody>
                         <?php
-                        include "./config.php";
                         if (isset($_GET['page'])) {
                             $page = $_GET['page'];
                         } else {

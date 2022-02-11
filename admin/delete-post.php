@@ -1,6 +1,11 @@
 <?php
   include "config.php";
 
+if ($_SESSION['role_id'] == 0) {
+    header("Location: {$hostname}/");
+}
+
+
   $post_id = $_GET['id'];
   $cat_id = $_GET['catid'];
 

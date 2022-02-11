@@ -1,4 +1,12 @@
-<?php include "header.php"; ?>
+<?php
+include "header.php";
+include "config.php";
+
+if ($_SESSION['role_id'] == 0) {
+    header("Location: {$hostname}/");
+}
+
+?>
 <div id="admin-content">
     <div class="container">
         <div class="row">

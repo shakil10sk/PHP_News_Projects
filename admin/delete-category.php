@@ -1,7 +1,7 @@
 <?php
     include 'config.php';
-    if($_SESSION["user_role"] == '0'){
-      header("Location: {$hostname}/admin/post.php");
+    if($_SESSION["role_id"] == '0'){
+      header("Location: {$hostname}");
     }
     $cat_id = $_GET["id"];
 
@@ -13,5 +13,3 @@
     }
 
     mysqli_close($conn);
-
-?>

@@ -1,3 +1,11 @@
+<?php
+include "config.php";
+session_start();
+if (isset($_SESSION['username'])) {
+    header("Location: {$hostname}/post.php");
+}
+?>
+
 <!doctype html>
 <html>
 
@@ -41,15 +49,16 @@
                         $query = mysqli_query($conn, $sql) or die("sql error to check username password");
                         if (mysqli_num_rows($query) > 0) {
                             while ($row = mysqli_fetch_assoc($query)) {
-                                if (!isset($_SESSION)) {
-                                    session_start();
-                                } else {
-                                    session_destroy();
-                                    session_start();
-                                }
+                                // if (!isset($_SESSION)) {
+                                session_start();
+                                // }
+                                // else {
+                                //     session_destroy();
+                                //     session_start();
+                                // }
                                 $_SESSION['username'] = $row['username'];
                                 $_SESSION['user_id'] = $row['user_id'];
-                                $_SESSION['user_role'] = $row['role'];
+                                $_SESSION['role_id'] = $row['role'];
 
                                 header("Location: {$hostname}/post.php");
                             }
