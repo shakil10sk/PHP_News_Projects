@@ -1,7 +1,7 @@
 <?php include "header.php";
 include "config.php";
 
-if ($_SESSION['role_id'] == 0) {
+if ($_SESSION['role_id'] == '0') {
     header("Location: {$hostname}/");
 }
 
