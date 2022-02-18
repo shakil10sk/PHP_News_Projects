@@ -18,6 +18,7 @@
                         <th>Author</th>
                         <th>Edit</th>
                         <th>Delete</th>
+                        <th>Delete</th>
                     </thead>
                     <tbody>
                         <?php
