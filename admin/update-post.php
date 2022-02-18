@@ -1,4 +1,10 @@
-<?php include "header.php"; ?>
+<?php 
+include "header.php";
+include "config.php";
+if(isset($_GET['id'])){
+    echo $_GET['id'];
+}
+?>
 <div id="admin-content">
   <div class="container">
   <div class="row">

@@ -48,8 +48,8 @@
                                     <td><?php echo $row['category_name']; ?></td>
                                     <td><?php echo $row['post_date']; ?></td>
                                     <td><?php echo $row['first_name'] . $row['last_name']; ?></td>
-                                    <td class='edit'><a href='update-post.php'><i class='fa fa-edit'></i></a></td>
-                                    <td class='delete'><a href='delete-post.php'><i class='fa fa-trash-o'></i></a></td>
+                                    <td class='edit'><a href='update-post.php?id=<?php echo $row['post_id']?>'><i class='fa fa-edit'></i></a></td>
+                                    <td class='delete'><a href='delete-post.php?id=<?php echo $row['post_id']?>'><i class='fa fa-trash-o'></i></a></td>
                                 </tr>
                         <?php
                             }
@@ -72,7 +72,7 @@
 
                     echo "<ul class='pagination admin-pagination'>";
                     if ($page > 1) {
-                        echo '<li><a href="psot.php?page=' . ($page - 1) . '">Prev</a></li>';
+                        echo '<li><a href="post.php?page=' . ($page - 1) . '">Prev</a></li>';
                     }
 
                     for ($i = 1; $i <= $total_page; $i++) {
