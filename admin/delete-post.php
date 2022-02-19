@@ -7,7 +7,7 @@ if ($_SESSION['role_id'] == 0) {
 
 
   $post_id = $_GET['id'];
-  $cat_id = $_GET['catid'];
+  $cat_id = $_GET['cat_id'];
 
   $sql1 = "SELECT * FROM post WHERE post_id = {$post_id}";
   $result = mysqli_query($conn, $sql1) or die("Query Failed : Select");

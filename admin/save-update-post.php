@@ -2,7 +2,7 @@
 include "config.php";
 
 if(empty($_FILES['new-image']['name'])){
-  $new_name = $_POST['old_image'];
+  $image_name = $_POST['old_image'];
 }else{
   $errors = array();
 
@@ -20,12 +20,9 @@ if(empty($_FILES['new-image']['name'])){
   }
 
   if($file_size > 2097152){
-    $errors[] = "File size must be 2mb or lower.";
+    $errors[] = "File size must be 2MB or lower.";
   }
 
-  if($file_size > 2097152){
-    $errors[] = "File size must be 2mb or lower.";
-  }
   $new_name = time(). "-".basename($file_name);
   $target = "upload/".$new_name;
   $image_name = $new_name;
@@ -47,7 +44,7 @@ if($_POST['old_category'] != $_POST["category"] ){
 $result = mysqli_multi_query($conn,$sql);
 
 if($result){
-  header("location: {$hostname}/admin/post.php");
+  header("location: {$hostname}/post.php");
 }else{
   echo "Query Failed";
 }
