@@ -71,7 +71,7 @@
 
                     echo "<ul class='pagination admin-pagination'>";
                     if ($page > 1) {
-                        echo '<li><a href="psot.php?page=' . ($page - 1) . '">Prev</a></li>';
+                        echo '<li><a href="post.php?page=' . ($page - 1) . '">Prev</a></li>';
                     }
 
                     for ($i = 1; $i <= $total_page; $i++) {
