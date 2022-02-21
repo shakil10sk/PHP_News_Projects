@@ -14,7 +14,7 @@
                     }
 
                     $sql = "SELECT post.post_id,post.title,post.description,category.category_name,
-                                concat(user.first_name,' ',user.last_name) as name,post.post_img ,post.post_date
+                                concat(user.first_name,' ',user.last_name) as name,post.post_img ,post.post_date,post.category
                                     FROM post
                                         LEFT JOIN category ON category.category_id = post.category
                                         LEFT JOIN user ON user.user_id = post.author
@@ -32,7 +32,7 @@
                             <div class="post-information">
                                 <span>
                                     <i class="fa fa-tags" aria-hidden="true"></i>
-                                    <?php echo $row['category_name']; ?>
+                                    <a href='category.php?cat_id=<?php echo $row['category'] ?>'><?php echo $row['category_name']; ?></a>
                                 </span>
                                 <span>
                                     <i class="fa fa-user" aria-hidden="true"></i>

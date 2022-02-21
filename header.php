@@ -36,10 +36,40 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class='menu'>
-                    <li><a href='category.php'>Business</a></li>
+                    <?php
+                        include "./config.php";                            
+
+                        if(isset($_GET['cat_id'])){
+                            $catid = $_GET['cat_id'];
+                            $home_active = "";
+                        }else{
+                            $home_active = "active";
+                            $catid = 0;
+                        }
+
+                        echo "<li><a class='{$home_active}' href='{$hostname}/index.php'>Home</a></li>";
+
+                        $sql = "SELECT * FROM category where category.post > 0";
+
+                        $query = mysqli_query($conn,$sql) or die("categoyr select Error in category.php file");
+
+                        if(mysqli_num_rows($query) > 0){
+                            while($row = mysqli_fetch_assoc($query)){
+                                if($row['category_id'] == $catid ){
+                                    $active = "active";
+                                }else{
+                                    $active = "";
+                                }
+                                
+                                echo "<li><a href='category.php?cat_id={$row['category_id']}' class='{$active}'>{$row['category_name']}</a></li>";
+                            }
+                        }
+                        mysqli_close($conn);
+                    ?>
+                    <!-- <li><a href='category.php'>Business</a></li>
                     <li><a href='category.php'>Entertainment</a></li>
                     <li><a href='category.php'>Sports</a></li>
-                    <li><a href='category.php'>Politics</a></li>
+                    <li><a href='category.php'>Politics</a></li> -->
                 </ul>
             </div>
         </div>

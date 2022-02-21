@@ -18,7 +18,7 @@
                             $offset = ($page - 1) * $limit;
     
                             $sql = "SELECT post.post_id,post.title,post.description,category.category_name,
-                                        concat(user.first_name,' ',user.last_name) as name,post.post_img ,post.post_date
+                                        concat(user.first_name,' ',user.last_name) as name,post.post_img ,post.post_date,post.category,post.author
                                             FROM post
                                                 LEFT JOIN category ON category.category_id = post.category
                                                 LEFT JOIN user ON user.user_id = post.author
@@ -42,11 +42,11 @@
                                         <div class="post-information">
                                             <span>
                                                 <i class="fa fa-tags" aria-hidden="true"></i>
-                                                <a href='category.php'><?php echo $row['category_name']?></a>
+                                                <a href='category.php?cat_id=<?php echo $row['category'] ?>'><?php echo $row['category_name']?></a>
                                             </span>
                                             <span>
                                                 <i class="fa fa-user" aria-hidden="true"></i>
-                                                <a href='author.php'><?php echo $row['name']; ?></a>
+                                                <a href='author.php?auth_id=<?php echo $row['author']; ?>'><?php echo $row['name']; ?></a>
                                             </span>
                                             <span>
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -54,7 +54,7 @@
                                             </span>
                                         </div>
                                         <p class="description">
-                                           <?php echo $row['description']; ?>
+                                           <?php echo substr($row['description'],0,150) . "..." ?>
                                         </p>
                                         <a class='read-more pull-right' href='single.php?id=<?php echo $row['post_id'];?>'>read more</a>
                                     </div>
@@ -66,9 +66,7 @@
                             }else{
                                 echo "<h1 class='text-danger'>No Data Fount</h1>";
                             }
-                        ?>
-
-                        <?php 
+                        
                         $sql_page = "SELECT * FROM post";
 
                         $page_result = mysqli_query($conn, $sql_page) or die("total Page count sql querry error");
