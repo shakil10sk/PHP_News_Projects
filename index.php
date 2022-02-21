@@ -1,5 +1,11 @@
 <?php include 'header.php'; ?>
     <div id="main-content">
+        <?php 
+        session_start();
+        if(isset($_SESSION['error'])){
+            echo $_SESSION['error']; 
+        }
+        ?>
         <div class="container">
             <div class="row">
                 <div class="col-md-8">

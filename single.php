@@ -14,7 +14,7 @@
                     }
 
                     $sql = "SELECT post.post_id,post.title,post.description,category.category_name,
-                                concat(user.first_name,' ',user.last_name) as name,post.post_img ,post.post_date,post.category
+                                concat(user.first_name,' ',user.last_name) as name,post.post_img ,post.post_date,post.category,post.author
                                     FROM post
                                         LEFT JOIN category ON category.category_id = post.category
                                         LEFT JOIN user ON user.user_id = post.author
@@ -36,7 +36,7 @@
                                 </span>
                                 <span>
                                     <i class="fa fa-user" aria-hidden="true"></i>
-                                    <a href='author.php'><?php echo $row['name']; ?></a>
+                                    <a href='author.php?auth_id=<?php echo $row['author']; ?>'><?php echo $row['name']; ?></a>
                                 </span>
                                 <span>
                                     <i class="fa fa-calendar" aria-hidden="true"></i>
