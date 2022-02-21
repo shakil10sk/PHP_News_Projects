@@ -3,7 +3,8 @@
         <?php 
         session_start();
         if(isset($_SESSION['error'])){
-            echo $_SESSION['error']; 
+            echo "<h4 class='text-danger text-center'> {$_SESSION['error']} </h4>" ;
+            session_destroy();
         }
         ?>
         <div class="container">

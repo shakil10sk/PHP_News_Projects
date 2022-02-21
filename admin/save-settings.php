@@ -37,7 +37,7 @@ $sql = "UPDATE settings SET websitename='{$_POST["website_name"]}',logo='{$file_
 $result = mysqli_query($conn,$sql);
 
 if($result){
-  header("location: {$hostname}/admin/settings.php");
+  header("location: {$hostname}/settings.php");
 }else{
   echo "Query Failed";
 }

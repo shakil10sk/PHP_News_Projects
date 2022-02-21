@@ -4,6 +4,13 @@ session_start();
 if (isset($_SESSION['username'])) {
     header("Location: {$hostname}/post.php");
 }
+
+$logo_sql = "SELECT * FROM settings";
+$logo_query = mysqli_query($conn,$logo_sql) or die("logo show query faild");
+$logo_image = mysqli_fetch_assoc($logo_query);
+$logo = $logo_image['logo'];
+$footerdesc = $logo_image['footerdesc'];
+
 ?>
 
 <!doctype html>
@@ -24,7 +31,7 @@ if (isset($_SESSION['username'])) {
         <div class="container">
             <div class="row">
                 <div class="col-md-offset-4 col-md-4">
-                    <img class="logo" src="images/news.jpg">
+                    <img class="logo" src="images/<?php echo $logo; ?>">
                     <h3 class="heading">Admin</h3>
                     <!-- Form Start -->
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">

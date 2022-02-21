@@ -16,7 +16,7 @@
                         if(empty($search_term)){
                             header("Location: {$hostname}/index.php");
                             session_start();
-                            $_SESSION['error'] = "<h1 class='text-danger'>No Search Item Given..</h1>";
+                            $_SESSION['error'] = "Pleae give a valid serch text !";
                             echo "<h1 class='text-danger'>No Search Item Given..</h1>";
                         }
                         

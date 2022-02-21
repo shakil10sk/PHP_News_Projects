@@ -6,6 +6,12 @@ if (!isset($_SESSION)) {
 if (!isset($_SESSION['username'])) {
     header("Location: {$hostname}/");
 }
+$logo_sql = "SELECT * FROM settings";
+$logo_query = mysqli_query($conn,$logo_sql) or die("logo show query faild");
+$logo_image = mysqli_fetch_assoc($logo_query);
+$logo = $logo_image['logo'];
+$footerdesc = $logo_image['footerdesc'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +45,7 @@ if (!isset($_SESSION['username'])) {
             <div class="row">
                 <!-- LOGO -->
                 <div class="col-md-2">
-                    <a href="post.php"><img class="logo" src="images/news.jpg"></a>
+                    <a href="post.php"><img class="logo" src="images/<?php echo $logo; ?>"></a>
                 </div>
                 <!-- /LOGO -->
                 <!-- LOGO-Out -->
@@ -68,6 +74,9 @@ if (!isset($_SESSION['username'])) {
                             </li>
                             <li>
                                 <a href="users.php">Users</a>
+                            </li>
+                            <li>
+                                <a href="settings.php">Settings</a>
                             </li>
                         <?php
                         }
