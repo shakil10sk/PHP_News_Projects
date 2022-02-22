@@ -21,6 +21,7 @@ if (isset($_POST['submit'])) {
     }
 
     $file_new_name = time() . "_" . basename($file_name);
+
     $target = "upload/" . $file_new_name;
 
     if (empty($errors) === true) {

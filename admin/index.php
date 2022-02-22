@@ -37,11 +37,11 @@ $footerdesc = $logo_image['footerdesc'];
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                         <div class="form-group">
                             <label>Username</label>
-                            <input type="text" name="username" class="form-control" placeholder="" required>
+                            <input type="text" name="username" class="form-control" placeholder="" >
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="" required>
+                            <input type="password" name="password" class="form-control" placeholder="" >
                         </div>
                         <input type="submit" name="login" class="btn btn-primary" value="login" />
                     </form>
@@ -49,6 +49,10 @@ $footerdesc = $logo_image['footerdesc'];
                     <?php
                     include "config.php";
                     if (isset($_POST['login'])) {
+                        if(empty($_POST['username']) || empty($_POST['password'])){
+                            echo '<h5 class="alert alert-danger">All field must be entered....</h5>';
+                            die();
+                        }
                         $username = mysqli_real_escape_string($conn, $_POST['username']);
                         $password = md5(mysqli_real_escape_string($conn, $_POST['password']));
 
