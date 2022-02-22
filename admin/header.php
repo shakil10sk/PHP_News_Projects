@@ -64,6 +64,9 @@ $footerdesc = $logo_image['footerdesc'];
                 <div class="col-md-12">
                     <ul class="admin-menu">
                         <li>
+                            <a href="index.php">Home</a>
+                        </li>
+                        <li>
                             <a href="post.php">Post</a>
                         </li>
                         <?php
